@@ -1,4 +1,4 @@
-import { RouteObject } from "react-router-dom";
+import { Navigate, RouteObject } from "react-router-dom";
 
 import { AboutPage } from "./pages";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -16,6 +16,10 @@ export const routes: RouteObject[] = [
         path: "about",
         element: <AboutPage />,
       },
+      {
+        path: "*",
+        element: <Navigate replace to="/about" />,
+      },
     ],
   },
 ];
@@ -28,5 +32,11 @@ export const routes: RouteObject[] = [
  * /about 진입
  *  1. loader
  *  2. Layout
- *  3. Layout
+ *  3. Layout (About)
+ *
+ * /123 진입
+ *  1. loader
+ *  2. Layout
+ *  3. Layout (Navigate)
+ *  4. Layout (About)
  */
