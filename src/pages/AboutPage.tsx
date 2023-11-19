@@ -1,5 +1,6 @@
 const AboutPage = () => {
-  return <div>AboutPage</div>;
+  // FIXME: Error Test
+  return <button onClick={() => methodDoesNotExist()}>Break the world</button>;
 };
 
 export default AboutPage;

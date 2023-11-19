@@ -1,10 +1,17 @@
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineConfig } from "vite";
 import path from "path";
 import react from "@vitejs/plugin-react-swc";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    sentryVitePlugin({
+      org: "hobby",
+      project: "tutorials",
+    }),
+  ],
 
   /** @see https://vitejs-kr.github.io/config/server-options.html */
   server: {
@@ -20,5 +27,9 @@ export default defineConfig({
         replacement: path.resolve(__dirname, "src"),
       },
     ],
+  },
+
+  build: {
+    sourcemap: true,
   },
 });
