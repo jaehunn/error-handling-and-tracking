@@ -1,42 +1,25 @@
-import { Navigate, RouteObject } from "react-router-dom";
+import { RouteObject } from "react-router-dom";
+import { SentryErrorBoundary } from "~/lib/sentry";
 
 import { AboutPage } from "./pages";
-import ErrorBoundary from "./components/ErrorBoundary";
-import Layout from "./components/Layout";
-import loader from "./utils/loader";
+import Layout from "~/components/Layout";
+import loader from "~/utils/loader";
 
 export const routes: RouteObject[] = [
   {
     path: "/",
     loader,
-    errorElement: <ErrorBoundary />,
+    errorElement: <SentryErrorBoundary />,
     element: <Layout />,
     children: [
       {
         path: "about",
         element: <AboutPage />,
       },
-      {
-        path: "*",
-        element: <Navigate replace to="/about" />,
-      },
+      // {
+      //   path: "*",
+      //   element: <Navigate replace to="/about" />,
+      // },
     ],
   },
 ];
-
-/**
- * / 진입
- *  1. loader
- *  2. Layout
- *
- * /about 진입
- *  1. loader
- *  2. Layout
- *  3. Layout (About)
- *
- * /123 진입
- *  1. loader
- *  2. Layout
- *  3. Layout (Navigate)
- *  4. Layout (About)
- */
